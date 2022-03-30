@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Vente Sandwitch</title>
+ </head>
+ <body>
+  <form method="POST" action="recap.php" enctype="multipart/form-data">
+   <table>
+    <tr>
+     <td>Nom</td>
+     <td><input type=text name=nom /></td>
+    </tr>
+    <tr>
+     <td>Prenom</td>
+     <td><input type=text name=prenom /></td>
+    </tr>
+    <tr>
+     <td>Nombre</td>
+     <td><input type=number name=nbSand /></td>
+    </tr>
+    <tr>
+     <td>Adresse</td>
+     <td><textarea name=adr > </textarea></td>
+    </tr>
+    <tr>
+     <td>Type</td>
+     <td>
+      <select name="type">
+       <option value="viande" /> Viande
+       <option value="poulet" /> Poulet
+       <option value="escalope" />Escalope
+      </select>
+     </td>
+    </tr>
+    <tr>
+     <td>Ingrédients</td>
+     <td>
+      <input type=checkbox name=harissa /> Harissa
+      <input type=checkbox name=salade /> Salade
+      <input type=checkbox name=mayo /> Mayo
+     </td>
+    </tr>
+    <tr>
+     <td>CIN</td>
+     <td><input type=file name=cin /></td>
+    </tr>
+   </table>
+   <br/>
+   <button type=submit>Submit</button>
+   &nbsp;&nbsp;&nbsp;
+   <button type=reset>Cancel</button>
+  </form>
+ </body>
+</html>

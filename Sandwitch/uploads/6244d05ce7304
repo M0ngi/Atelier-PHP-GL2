@@ -1,0 +1,60 @@
+from pwn import *
+
+def getBlock():
+ r = remote("20.65.65.163", 1009)
+
+ r.recvuntil(b' anymore: ')
+ crypted = r.readline().decode().strip()
+
+ print("Encrypted           :", crypted)
+ print("Block 2             :", crypted[16*2:16*2*2])
+
+ r.sendline(b'1')
+
+ r.sendline(crypted[16*2:16*2*2].encode())
+
+ r.recvuntil(b'kla Mjamra:  ')
+
+ dec = r.readline().decode().strip()
+
+ print("Dec                 :", dec)
+
+ dec = bytes.fromhex(dec)
+
+ dec_txt = []
+ for b in dec:
+  poss = []
+  for i in range(256):
+   c = b^i
+   c = chr(c)
+   if c in "azertyuiopmlkjhgfdsqwxcvbn0123456789":
+    poss.append(c)
+ 
+  poss = set(poss)
+  dec_txt.append(poss)
+ 
+ return dec_txt
+
+flag = [set(list('azertyuiopqdfgjklmwxcvbnh0123456789'))]* 16
+
+while True:
+ poss = getBlock()
+ #print(poss)
+ for i, comb in enumerate(poss):
+  flag[i] = flag[i].intersection(comb)
+
+ print(flag)
+
+
+
+# 1101 0010
+# 1001 1000
+
+# 0100 1010
+
+
+
+
+
+
+r.interactive()
